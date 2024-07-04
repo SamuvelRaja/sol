@@ -33,7 +33,7 @@ export function Component() {
             <div className="flex items-center justify-center rounded-full w-7 h-7">
               <BotIcon className="w-4 h-4" />
             </div>
-            <div className="overflow-hidden text-sm grow text-ellipsis whitespace-nowrap">ChatGPT</div>
+            <div className="overflow-hidden text-sm grow text-ellipsis whitespace-nowrap">Sol</div>
             <PenIcon className="w-4 h-4" />
           </Button>
         </div>
@@ -101,7 +101,7 @@ export function Component() {
               <Button
                 variant="ghost"
                 className="gap-1 rounded-xl px-3 h-10 data-[state=open]:bg-muted text-lg">
-                ChatGPT <span className="text-muted-foreground">3.5</span>
+                Sol <span className="text-muted-foreground">3.5</span>
                 <ChevronDownIcon className="w-4 h-4 text-muted-foreground" />
               </Button>
             </DropdownMenuTrigger>
@@ -148,7 +148,7 @@ export function Component() {
               <AvatarFallback>OA</AvatarFallback>
             </Avatar>
             <div className="grid gap-1">
-              <div className="font-bold">ChatGPT</div>
+              <div className="font-bold">Sol</div>
               <div className="prose text-muted-foreground">
                 <p>
                   Of course! Imagine you&apos;re in a car driving down a bumpy road, and the ride isn&apos;t perfectly
@@ -198,7 +198,7 @@ export function Component() {
           className="max-w-2xl w-full sticky bottom-0 mx-auto py-2 flex flex-col gap-1.5 px-4 bg-background">
           <div className="relative">
             <Textarea
-              placeholder="Message ChatGPT..."
+              placeholder="Message Sol..."
               name="message"
               id="message"
               rows={1}
@@ -213,7 +213,7 @@ export function Component() {
             </Button>
           </div>
           <p className="text-xs font-medium text-center text-neutral-700">
-            ChatGPT can make mistakes. Consider checking important information.
+            Sol can make mistakes. Consider checking important information.
           </p>
         </div>
       </div>
