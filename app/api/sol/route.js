@@ -1,5 +1,5 @@
 // app/api/tasks/route.js
-
+import { GoogleGenerativeAI,HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
 
 // GET handler
@@ -14,15 +14,8 @@ export async function GET() {
 
 // POST handler
 export async function POST(req) {
-  
+  const data= await req.json()
 
-
-
-const {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} = require("@google/generative-ai");
 
 const apiKey = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
@@ -49,18 +42,14 @@ async function run() {
     ],
   });
 
-  const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
-  console.log(result.response.text());
+  const result = await chatSession.sendMessage(data.message);
+  console.log(result.response,"txt")
+  return result.response.text()
 }
 
-run();
+const reply=run();
 
-  const newTask = {
-    id: Date.now(),
-    title,
-    description,
-  };
 
-  return NextResponse.json(result.response.text(), { status: 201 });
+  return NextResponse.json(reply, { status: 201 });
 }
 
