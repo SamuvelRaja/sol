@@ -4,18 +4,12 @@ import Link from "next/link"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Textarea } from "@/components/ui/textarea";
-import axios from "axios"
+import Textbox from "./ui/textbox"
 
 
 export function Component() {
 
-  function handleSubmit(e){
-    e.preventDefault()
-    const rez=axios.get("/api/sol")
-    console.log(rez)
-
-  }
+ 
   return (
     (<div className="grid md:grid-cols-[260px_1fr] min-h-screen w-full">
       <div className="flex-col hidden gap-2 text-foreground bg-background md:flex">
@@ -170,7 +164,8 @@ export function Component() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="w-4 h-4 hover:bg-transparent text-stone-400 hover:text-stone-900">
+                  className="w-4 h-4 hover:bg-transparent text-stone-400 hover:text-stone-900"
+                  >
                   <ThumbsDownIcon className="w-4 h-4" />
                   <span className="sr-only">Downvote</span>
                 </Button>
@@ -187,24 +182,7 @@ export function Component() {
         </ScrollArea>
         <div
           className="max-w-2xl w-full sticky bottom-0 mx-auto py-2 flex flex-col gap-1.5 px-4 bg-background">
-          <form onSubmit={(e)=>handleSubmit(e)}>
-            <div className="relative">
-              <Textarea
-                placeholder="tell Sol..."
-                name="message"
-                id="message"
-                rows={1}
-                className="min-h-[48px] rounded-2xl resize-none p-4 border border-neutral-400 shadow-sm pr-16" />
-              <Button
-                type="submit"
-                size="icon"
-                className="absolute w-8 h-8 top-3 right-3"
-                disabled>
-                <ArrowUpIcon className="w-4 h-4" />
-                <span className="sr-only">Send</span>
-              </Button>
-            </div>
-          </form>
+            <Textbox />
           <p className="text-xs font-medium text-center text-neutral-700">
             Sol can make mistakes. Consider checking important information.
           </p>
