@@ -10,14 +10,21 @@ const Textbox = ({props}) => {
   async function handleSubmit(e) {
     e.preventDefault();
     
-    try {
-      const response = await axios.post("/api/sol", { message });
+  //   try {
+  //     const response = await axios.post("/api/sol", { message });
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
+
+  try {
+      const response = await axios.post("/api/mistral", { message });
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
   }
-
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <div className="relative">
