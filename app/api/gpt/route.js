@@ -1,24 +1,30 @@
-
 import { NextResponse } from 'next/server';
-import MistralClient from '@mistralai/mistralai';
+import axios from 'axios';
 
+const GPT4V_ENDPOINT = "https://sol001.openai.azure.com/openai/deployments/gpt001/chat/completions?api-version=2024-02-15-preview";
 
-
-// POST handler
 export async function POST(req) {
-  const data = await req.json();
+  try {
+    const data = await req.json();
+    const apiKey = process.env.GPT4V_KEY;
 
-  const apiKey = process.env.MISTRAL_KEY;
+    const headers = {
+      "Content-Type": "application/json",
+      "api-key": apiKey,
+    };
 
-const client = new MistralClient(apiKey);
+    const payload = {
+      "messages": [{ role: 'user', content: data.message }],
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "max_tokens": 800
+    };
 
-const chatResponse = await client.chat({
-  model: 'mistral-large-latest',
-  messages: [{role: 'user', content: data.message}],
-});
-
-console.log('Chat:', chatResponse.choices[0].message.content);
-  
-
-  return NextResponse.json({ reply:chatResponse.choices[0].message.content }, { status: 201 });
+    const response = await axios.post(GPT4V_ENDPOINT, payload, { headers });
+    console.log(response.data.choices,"rr")
+    return NextResponse.json({ reply: response.data.choices[0].message.content }, { status: 201 });
+  } catch (error) {
+    console.error("Failed to make the request. Error:", error.data);
+    return NextResponse.json({ error: 'Failed to make the request' }, { status: 500 });
+  }
 }
