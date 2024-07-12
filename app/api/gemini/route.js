@@ -32,7 +32,7 @@ export async function POST(req) {
     responseMimeType: "text/plain",
   };
 
-  async function run() {
+  async function run() {   
     const chatSession = model.startChat({
       generationConfig,
       // safetySettings: Adjust safety settings

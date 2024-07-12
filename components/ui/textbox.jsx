@@ -11,7 +11,7 @@ const Textbox = ({props}) => {
     e.preventDefault();
     
     try {
-      const response = await axios.post("/api/gpt", { message });
+      const response = await axios.post("/api/gemini", { message });
       console.log(response.data);
     } catch (error) {
       console.error(error);
